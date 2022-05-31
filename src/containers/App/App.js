@@ -1,5 +1,5 @@
 import React from 'react';
-import MockAPI from '../../components/MockAPI';
+import Activities from '../../components/Activities';
 import {
   Container,
   Box,
@@ -9,8 +9,7 @@ const App = () => {
   return (
     <Container maxWidth="xl">
       <Box>
-        {/* Remove the Mock API if it's working! */}
-        <MockAPI />
+        <Activities />
       </Box>
     </Container>
   );

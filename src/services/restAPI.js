@@ -5,6 +5,14 @@ import {
   UnauthorizedError,
 } from '../utils/errorTypes';
 
+const getDefaultOptions = (_method, _body) => ({
+  method: _method,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: _body && JSON.stringify(_body),
+});
+
 /**
  * @function fetchWrapper
  * @param {string} [method] - REST method | url
@@ -16,18 +24,15 @@ import {
  * @return {Promise<Object>} A promise containing the deserialized response object.
  */
 
-export const fetchWrapper = (method, url, body, additionalOptions) => {
+export const fetchWrapper = (method, url, body, overrideOptions) => {
   const _method = url ? method.toUpperCase() : 'GET';
   const _url = url || method;
 
-  const options = {
-    method: _method,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: body && JSON.stringify(body),
-    ...additionalOptions,
-  };
+  const defaultOptions = getDefaultOptions(_method, body);
+
+  const options = overrideOptions
+    ? { ...defaultOptions, ...overrideOptions }
+    : defaultOptions;
 
   return fetch(_url, options).then(handleResponse);
 };

@@ -8,10 +8,11 @@ npm install
 ```
 
 ### Setup Environment Variable
-Rename file .env.test.local into .env and provide an API key for 
+Rename file .env.test.local into .env and provide an API key for MORALIS_API_KEY.
 ```
 MORALIS_API_KEY=<api_key>
 ```
+If you don't have an API key, you may contact me justincarldacanay@gmail.com
 
 ### Running the Application
 Before we run the project make sure have installed the packages and setup the .env file

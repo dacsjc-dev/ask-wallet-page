@@ -1,11 +1,12 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const DotEnv = require('dotenv-webpack');
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, '/public'),
     filename: 'bundle.js',
   },
   devServer: {
@@ -17,6 +18,13 @@ module.exports = {
       template: './public/index.html',
     }),
     new DotEnv(),
+    new BrowserSyncPlugin({
+      host: 'localhost',
+      port: 3000,
+      files: ['./public/*.html'],
+      proxy: 'http://localhost:4000/',
+      open: false,
+    })
   ],
   module: {
     rules: [

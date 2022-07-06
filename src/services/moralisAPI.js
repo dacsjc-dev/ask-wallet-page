@@ -52,7 +52,8 @@ export const getASKTransactions = async (address) => {
   };
 
 
-  return results.map((result) => ({
+  return results.map((result, index) => ({
+    id: index,
     ...result,
     status: result.from_address === address ? 'sent' : 'received'
   }));
